@@ -18,6 +18,6 @@ jobs:
         run: |
           lftp -e "
           open -u ${{ secrets.ftp_user }},${{ secrets.ftp_password }} myhosting.ua.pt;
-          mirror --reverse --verbose --delete ./ /Hosting/ieee.web.ua.pt/;
+          mirror --reverse --verbose --delete --exclude-glob .git/ --exclude-glob .github/ --exclude .gitignore ./ /Hosting/ieee.web.ua.pt/;
           bye
           "
