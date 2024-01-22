@@ -1,21 +1,20 @@
 on:
-    push:
-        branches:
-        - main
+  push:
+    branches:
+      - main
 name: Deploy website on push
 jobs:
-    web-deploy:
-        name: Deploy
-        runs-on: ubuntu-latest
-        steps:
-            - name: Get latest code
-              uses: actions/checkout@v3
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get latest code
+        uses: actions/checkout@v3
 
-            - name: Push files
-              uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-              with:
-                server: myhosting.ua.pt
-                username: ${{ secrets.ftp_user }}
-                password: ${{ secrets.ftp_password }}
-                protocol: ftps
-                server-dir: /Hosting/ieee.web.ua.pt/
+      - name: Push files using lftp
+        run: |
+          lftp -e "
+          open -u ${{ secrets.ftp_user }},${{ secrets.ftp_password }} myhosting.ua.pt;
+          mirror --reverse --verbose --delete ./ /Hosting/ieee.web.ua.pt/;
+          bye
+          "
