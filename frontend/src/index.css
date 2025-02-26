@@ -1,9 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
 @layer base {
   :root {
     --radius: 0.5rem
+  }
+
+  button, [role="button"] {
+    cursor: pointer;
   }
 }
 
