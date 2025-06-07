@@ -3,61 +3,47 @@
 # main menu
 [[main]]
 name = "Home"
-url = "/"
+url = "#home"
 weight = 1
 
 [[main]]
-name = "About"
-url = "/about"
+name = "Quem Somos"
+url = "#about"
 weight = 2
 
 [[main]]
-name = "Elements"
-url = "/elements"
+name = "Eventos"
+url = "#events"
 weight = 3
 
 [[main]]
+name = "Projetos"
+url = "#projects"
 weight = 4
-name = "Pages"
 
 [[main]]
-parent = "Pages"
-name = "Blog"
-url = "/blog"
+name = "Membros"
+url = "#members"
+weight = 5
 
 [[main]]
-parent = "Pages"
-name = "Contact"
-url = "/contact"
-
-[[main]]
-parent = "Pages"
-name = "Authors"
-url = "/authors"
-
-[[main]]
-parent = "Pages"
-name = "Categories"
-url = "/categories"
-
-[[main]]
-parent = "Pages"
-name = "404 Page"
-url = "/404"
+name = "Contactos"
+url = "#footer"
+weight = 6
 
 
-# footer menu
-[[footer]]
-name = "About"
-url = "/about"
-weight = 1
+# # footer menu
+# [[footer]]
+# name = "About"
+# url = "#about"
+# weight = 1
 
-[[footer]]
-name = "Elements"
-url = "/elements"
-weight = 2
+# [[footer]]
+# name = "Elements"
+# url = "#elements"
+# weight = 2
 
-[[footer]]
-name = "Privacy Policy"
-url = "/privacy-policy"
-weight = 3
+# [[footer]]
+# name = "Privacy Policy"
+# url = "#privacy-policy"
+# weight = 3

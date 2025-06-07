@@ -1,7 +1,7 @@
 <!-- theme switcher -->
 {{ $class := .Class }}
 {{ if site.Params.theme_switcher }}
-  <div class="theme-switcher {{ $class }} invisible">
+  <div name="theme-switcher" class="theme-switcher {{ $class }} invisible">
     <input id="theme-switcher" data-theme-switcher type="checkbox" />
     <label for="theme-switcher">
       <span class="sr-only">theme switcher</span>

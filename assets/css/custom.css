@@ -1,1 +1,4 @@
-/* Add your own custom styles here */
+html {
+  scroll-padding-top: 100px;
+  scroll-behavior: smooth;
+}
