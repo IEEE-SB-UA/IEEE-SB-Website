@@ -21,10 +21,10 @@ name = "Projetos"
 url = "#projects"
 weight = 4
 
-[[main]]
-name = "Membros"
-url = "#members"
-weight = 5
+# [[main]]
+# name = "Membros"
+# url = "#members"
+# weight = 5
 
 [[main]]
 name = "Contactos"

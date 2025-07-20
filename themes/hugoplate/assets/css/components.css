@@ -3,6 +3,10 @@
   @apply py-24 xl:py-28;
 }
 
+.section#home {
+  @apply lg:h-screen;
+}
+
 .section-sm {
   @apply py-16 xl:py-20;
 }

@@ -56,7 +56,7 @@ projects:
         link: ""
 
 # Members
-members:
-  - title: "Membros"
+# members:
+#   - title: "Membros"
 
 ---
