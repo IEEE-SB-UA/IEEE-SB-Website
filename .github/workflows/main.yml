@@ -1,78 +1,57 @@
-# workflow for building and deploying to GitHub Pages
-name: Deploy Hugo site to Pages
+name: Deploy Website on Push
 
 on:
-  # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Default to bash
-defaults:
-  run:
-    shell: bash
-
-# Environment variables available to all jobs and steps in this workflow
-env:
-  HUGO_ENV: production
-  HUGO_VERSION: "0.141.0"
-  GO_VERSION: "1.23.3"
-  TINA_CLIENT_ID: ${{ secrets.TINA_CLIENT_ID }}
-  TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-  TINA_SEARCH_TOKEN: ${{ secrets.TINA_SEARCH_TOKEN }}
+    branches:
+      - main
 
 jobs:
-  # Build job
-  build:
-    runs-on: ubuntu-24.04-arm
+  npm-build:
+    runs-on: ubuntu-latest
     steps:
-      - name: Install Hugo
-        run: |
-          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-arm64.deb \
-          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-      - name: Install Go
-        run: |
-          wget -O ${{ runner.temp }}/go.deb https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz \
-          && sudo tar -C /usr/local -xzf ${{ runner.temp }}/go.deb
-
-      - name: Checkout
-        uses: actions/checkout@v4.2.2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          submodules: recursive
-          fetch-depth: 0
+          node-version: '20'
 
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Setup Project
-        run: npm run project-setup
-
-      - name: Install npm dependencies
-        run: npm install
-
-      - name: Build site
+      - name: Build project
         run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3.0.1
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
         with:
-          path: ./public
+          name: public
+          path: public
 
-  # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-24.04-arm
-    needs: build
+  ftp-deploy:
+    needs: npm-build
+    runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4.0.5
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: public
+          path: public
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
+        with:
+          server: 'myhosting.ua.pt'
+          protocol: ftps
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          timeout: 60000
+          server-dir: '/Hosting/ieee.web.ua.pt/'
+          local-dir: ./public/
+          exclude: |
+            **/.git*
+            **/.git*/**
