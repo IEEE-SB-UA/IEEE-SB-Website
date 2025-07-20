@@ -1,0 +1,49 @@
+############# English navigation ##############
+
+# main menu
+[[main]]
+name = "Home"
+url = "#home"
+weight = 1
+
+[[main]]
+name = "Quem Somos"
+url = "#about"
+weight = 2
+
+[[main]]
+name = "Eventos"
+url = "#events"
+weight = 3
+
+[[main]]
+name = "Projetos"
+url = "#projects"
+weight = 4
+
+# [[main]]
+# name = "Membros"
+# url = "#members"
+# weight = 5
+
+[[main]]
+name = "Contactos"
+url = "#footer"
+weight = 6
+
+
+# # footer menu
+# [[footer]]
+# name = "About"
+# url = "#about"
+# weight = 1
+
+# [[footer]]
+# name = "Elements"
+# url = "#elements"
+# weight = 2
+
+# [[footer]]
+# name = "Privacy Policy"
+# url = "#privacy-policy"
+# weight = 3

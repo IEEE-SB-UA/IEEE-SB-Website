@@ -1,0 +1,150 @@
+{{ define "main" }}
+  <!-- Banner -->
+  {{ with .Params.banner }}
+  <section id="home" class="section pt-14 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-primary via-transparent to-dark opacity-40"></div>
+    <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22 viewBox=%220 0 400 400%22%3E%3Cdefs%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence baseFrequency=%220.4%22 numOctaves=%222%22 seed=%223%22/%3E%3CfeColorMatrix type=%22saturate%22 values=%220%22/%3E%3C/filter%3E%3C/defs%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22 opacity=%220.3%22/%3E%3C/svg%3E');"></div>
+
+    <div class="container relative z-10">
+      <div class="row justify-center">
+        <div class="lg:col-7 md:col-9 mb-8 text-center">
+          <h1 class="mb-4 text-h3 lg:text-h1">
+            {{ .title | markdownify }}
+          </h1>
+          <p class="mb-8">
+            {{ .content | markdownify }}
+          </p>
+        </div>
+        <div class="col-12 mt-4">
+          {{ partial "image" (dict "Src" .image "Alt" "Banner image" "Class" "rounded-xl shadow-lg mx-auto max-h-[60vh] w-auto") }}
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+  <!-- /Banner -->
+
+  <!-- About -->
+  {{ range $i, $e:= .Params.about }}
+  <section id="about" class="section-sm {{ if (modBool $i 2) }}bg-gradient{{ end }}">
+    <div class="container text-center">
+      <h2 class="mb-4">
+        {{ .title | markdownify }}
+      </h2>
+      <p class="mb-8 text-xl">
+        {{ .content | markdownify }}
+      </p>
+      <div class="grid gap-6 md:grid-cols-3">
+        {{ range .cards }}
+          <div class="flex flex-row items-center justify-center">
+            <div class="rounded-xl w-full bg-light dark:bg-darkmode-light shadow-md p-6 hover:shadow-lg transition-all">
+              {{ if .icon }}
+                <div class="mb-4 text-4xl align-left">
+                  <i class="{{ .icon }}"></i>
+                </div>
+              {{ end }}
+              {{ if .highlight }}
+                <h1 class="mb-4">
+                  {{ .highlight }}
+                </h1>
+              {{ end }}
+              <h3 class="h5 font-primary font-semibold mb-2">
+                {{ .title | markdownify }}
+              </h3>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+  <!-- /About -->
+
+  <!-- Events -->
+  {{ range $i, $e:= .Params.events }}
+  <section id="events" class="section-sm">
+    <div class="container">
+      <h2 class="mb-12 text-center">
+        {{ .title | markdownify }}
+      </h2>
+      <div class="col-12">
+        <div class="swiper testimonial-slider">
+          <div class="swiper-wrapper">
+            {{ range .cards }}
+              <div class="swiper-slide">
+                <a href="{{ .link }}" target="_blank" rel="noopener"
+                  class="group relative block h-64 w-full rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105">
+                  {{ partial "image" (dict "Src" .image  "Class" "absolute w-full h-full! object-cover" "Alt" .title) }}
+                  <div class="absolute bg-black inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <h3 class="text-white text-xl font-semibold">{{ .title }}</h3>
+                  </div>
+                </a>
+              </div>
+            {{ end }}
+          </div>
+          <div
+            class="testimonial-slider-pagination mt-9 flex items-center justify-center text-center">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+  <!-- /Events -->
+
+  <!-- Projects -->
+  {{ range $i, $e:= .Params.projects }}
+  <section id="projects" class="section-sm">
+    <div class="container">
+      <h2 class="mb-12 text-center">
+        {{ .title | markdownify }}
+      </h2>
+      {{ range .cards }}
+        <!-- Desktop view -->
+        <div class="hidden md:flex flex-row mb-4 p-4! space-x-4! md:flex-row items-start h-64 bg-light dark:bg-darkmode-light rounded-xl shadow-md">
+          <div class="flex-shrink-0 relative w-full md:w-[25rem]">
+            {{ partial "image" (dict "Src" .image "Alt" .title "Class" "object-contain w-full h-full rounded-lg") }}
+          </div>
+
+          <div class="flex-1">
+            <h3 class="text-xl font-semibold mb-2">{{ .title }}</h3>
+            <p class="mb-4 text-muted">
+              {{ .description | markdownify }}
+            </p>
+            {{/*  <a href="{{ .link }}" target="_blank" rel="noopener" class="text-primary font-medium hover:underline inline-flex items-center gap-1">
+              Ler mais <span class="text-base">→</span>
+            </a>  */}}
+          </div>
+        </div>
+
+        <!-- Mobile view -->
+        <div class="md:hidden">
+          <a href="{{ .link }}" target="_blank" rel="noopener">
+            <div class="mb-4 p-4! flex flex-col items-start h-auto bg-light dark:bg-darkmode-light rounded-xl shadow-md">
+              <div class="relative w-full mb-4">
+                {{ partial "image" (dict "Src" .image "Alt" .title "Class" "object-contain w-full h-full rounded-lg") }}
+              </div>
+              <div>
+                <span class="font-bold">{{ .title }}:</span> <span class="text-muted">{{ .description | markdownify }}</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+  <!-- /Projects -->
+
+  <!-- Members -->
+  {{/*  {{ range $i, $e:= .Params.members }}
+  <section id="members" class="section-sm">
+    <div class="container">
+      <h2 class="mb-12 text-center">
+        {{ .title | markdownify }}
+      </h2>
+    </div>
+  </section>
+  {{ end }}  */}}
+  <!-- /Members -->
+{{ end }}

@@ -6,11 +6,41 @@ on:
       - main
 
 jobs:
-  ftp-deploy:
+  npm-build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: public
+          path: public
+
+  ftp-deploy:
+    needs: npm-build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: public
+          path: public
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.0
@@ -21,6 +51,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           timeout: 60000
           server-dir: '/Hosting/ieee.web.ua.pt/'
+          local-dir: ./public/
           exclude: |
             **/.git*
             **/.git*/**
