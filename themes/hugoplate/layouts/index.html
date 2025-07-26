@@ -14,6 +14,27 @@
           <p class="mb-8">
             {{ .content | markdownify }}
           </p>
+          <p>
+            <ul class="social-icons align-bottom flex justify-center items-center space-x-4">
+              {{ range site.Data.social.banner }}
+                <li>
+                  <a
+                    target="_blank"
+                    aria-label="{{ .name }}"
+                    rel="nofollow noopener"
+                    href="{{ .link | safeURL }}">
+                    {{ if eq .name "linktree" }}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="w-[1em] h-[1em] fill-current">
+                        <path d="M128 237.4L253.8 237.4L164.4 152L213.9 101L299.1 188.8L299.1 64L373 64L373 188.8L458.2 101.2L507.6 152L418.2 237.2L543.9 237.2L543.9 307.7L417.5 307.7L507.5 395.3L458.2 445.1L336 322.1L213.8 445.1L164.3 395.5L254.3 307.9L127.9 307.9L127.9 237.4zM298.9 408.8L372.8 408.8L372.8 576L298.9 576L298.9 408.8z"/>
+                      </svg>
+                    {{ else }}
+                      <i class="{{ .icon }}"></i>
+                    {{ end }}
+                  </a>
+                </li>
+              {{ end }}
+            </ul>
+          </p>
         </div>
         <div class="col-12 mt-4">
           {{ partial "image" (dict "Src" .image "Alt" "Banner image" "Class" "rounded-xl shadow-lg mx-auto max-h-[60vh] w-auto") }}
@@ -72,13 +93,12 @@
           <div class="swiper-wrapper">
             {{ range .cards }}
               <div class="swiper-slide">
-                <a href="{{ .link }}" target="_blank" rel="noopener"
-                  class="group relative block h-64 w-full rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105">
+                <div class="group relative block h-64 w-full rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:cursor-default">
                   {{ partial "image" (dict "Src" .image  "Class" "absolute w-full h-full! object-cover" "Alt" .title) }}
                   <div class="absolute bg-black inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <h3 class="text-white text-xl font-semibold">{{ .title }}</h3>
                   </div>
-                </a>
+                </div>
               </div>
             {{ end }}
           </div>
