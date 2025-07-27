@@ -20,5 +20,22 @@
       "icon": "fab fa-instagram",
       "link": "https://www.instagram.com/ieeeuasbpt"
     }
+  ],
+  "banner": [
+    {
+      "name": "instagram",
+      "icon": "fab fa-instagram",
+      "link": "https://www.instagram.com/ieeeuasbpt"
+    },
+    {
+      "name": "linkedin",
+      "icon": "fab fa-linkedin",
+      "link": "https://www.linkedin.com/company/ieeeuniversityofaveirostudentbranch"
+    },
+    {
+      "name": "linktree",
+      "icon": "fas fa-link",
+      "link": "https://linktr.ee/ieeeuasbpt"
+    }
   ]
 }
