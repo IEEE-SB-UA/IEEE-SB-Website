@@ -33,4 +33,23 @@
       },
     },
   });
+
+  // Hero Photo Slider
+  // ----------------------------------------
+  new Swiper(".hero-photo-slider", {
+    spaceBetween: 24,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    slidesPerView: 1,
+    effect: 'fade',
+    fadeEffect: { crossFade: true },
+    speed: 1200,
+    allowTouchMove: false,
+    simulateTouch: false,
+    keyboard: false,
+    mousewheel: false,
+  });
 })();

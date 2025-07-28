@@ -3,7 +3,16 @@
 banner:
   title: "IEEE UA Student Branch"
   content: "Bem vindo à pagina oficial do IEEE Student Branch da Universidade de Aveiro"
-  image: "/images/hero.jpg"
+  images:
+    - "/images/gallery/1.jpg"
+    - "/images/gallery/2.jpg"
+    - "/images/gallery/3.jpg"
+    - "/images/gallery/4.jpg"
+    - "/images/gallery/5.jpg"
+    - "/images/gallery/6.jpg"
+    - "/images/gallery/7.jpg"
+    - "/images/gallery/8.jpg"
+    - "/images/gallery/9.jpg"
   # button:
   #   enable: true
   #   label: "Get Started For Free"
@@ -31,13 +40,13 @@ events:
   - title: "Eventos"
     cards:
       - title: "MicroRato"
-        image: "/images/gallery/micro-rato.png"
+        image: "/images/events/micro-rato.png"
 
       - title: "ShareToy"
-        image: "/images/gallery/sharetoy.png"
+        image: "/images/events/sharetoy.png"
 
       - title: "ThinkTank"
-        image: "/images/gallery/think-tank.png"
+        image: "/images/events/think-tank.png"
 
 # Projects (ideally, the image should have 2308x1308px resolution or similar aspect ratio)
 projects:
@@ -45,11 +54,11 @@ projects:
     cards:
       - title: "Criação do Website do IEEE UA SB"
         description: "Desenvolvimento de uma plataforma online simples, intuitiva e funcional que serve de vitrine do trabalho realizado pelo Student Branch da Universidade de Aveiro. O website tem o objetivo de centralizar informação relevante, divulgar eventos e iniciativas, e reforçar a presença digital da associação junto da comunidade académica e externa."
-        image: "/images/og-image.png"
+        image: "/images/projects/website.png"
 
       - title: "Desenvolvimento de Cacifo Inteligente"
         description: "Projeto de criação de um sistema de cacifos inteligentes com recurso a impressão 3D para a construção das caixas físicas. O sistema integra sensores, atuadores e um microcontrolador Arduino, permitindo a abertura e gestão dos cacifos de forma automática e segura. Esta solução visa promover a inovação tecnológica e a aplicação prática de conhecimentos de eletrónica e programação."
-        image: "/images/gallery/cacifo.png"
+        image: "/images/projects/cacifo.png"
 
 # Members
 # members:
