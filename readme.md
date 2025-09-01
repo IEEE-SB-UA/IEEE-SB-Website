@@ -229,9 +229,3 @@ List of some projects people are building with **Hugoplate**!
 | [![Open Neuromorphic](https://tinyurl.com/hp7avtje)](https://open-neuromorphic.org/) | [![AI Models](https://tinyurl.com/mu4p7dhb)](https://aimodels.org/) | [![Hugobricks](https://tinyurl.com/4x3uwhm9)](https://www.hugobricks.preview.usecue.com/) | [![ONO LLC](https://tinyurl.com/2fbjzwzn)](https://ono.day/)
 |:---:|:---:|:---:|:---:|
 | **Open Neuromorphic** | **AI Models** | **Hugobricks** | **ONO LLC** |
-
----
-
-## 💻 Need Customization?
-
-If you need a custom theme, theme customization, or complete website development services from scratch you can [Hire Us](https://zeon.studio/estimate-project).
