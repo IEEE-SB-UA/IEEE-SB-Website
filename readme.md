@@ -141,7 +141,7 @@ You can change the colors and fonts from the `data/theme.json` file. This includ
 
 You can change the social links from the `data/social.json` file. Add your social links here, and they will automatically be displayed on the site.
 
----
+--- 
 
 ## 🛠 Advanced Usage
 
