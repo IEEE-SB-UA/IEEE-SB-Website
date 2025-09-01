@@ -56,7 +56,6 @@ jobs:
         with:
           server: 'myhosting.ua.pt'
           protocol: ftps
-          security: loose
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           #timeout: 60000
