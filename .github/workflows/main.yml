@@ -58,7 +58,7 @@ jobs:
           protocol: ftps
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          timeout: 60000
+          #timeout: 60000
           server-dir: '/Hosting/ieee.web.ua.pt/'
           local-dir: ./public/
           exclude: |
